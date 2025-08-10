@@ -12,7 +12,7 @@
   </developer>
   <description>
     <p>
-      welle.io is an open source DAB and DAB+ software defined radio (SDR) with support for rtl-sdr (RTL2832U), airspy and other devices supported by SoapySDR.
+      welle.io is an open source DAB and DAB+ software defined radio (SDR) with support for rtl-sdr (RTL2832U), airspy, HydraSDR and other devices supported by SoapySDR.
     </p>
   </description>
   <screenshots>

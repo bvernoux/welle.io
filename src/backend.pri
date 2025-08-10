@@ -17,6 +17,7 @@ unix:!macx:!android: {
     CONFIG  += airspy
     CONFIG  += rtl_sdr
     CONFIG  += soapysdr
+    CONFIG  += hydrasdr
 #    CONFIG  += limesdr // Experimental
 
 #    CONFIG  += mpg123_builtin
@@ -45,6 +46,7 @@ win32: {
     LIBS    += -lws2_32
     CONFIG  += airspy
     CONFIG  += rtl_sdr
+    CONFIG  += hydrasdr
     #CONFIG  += soapysdr
 }
 
@@ -61,6 +63,7 @@ macx {
     LIBS    += -lmp3lame
     CONFIG  += airspy
     CONFIG  += rtl_sdr
+    CONFIG  += hydrasdr
     CONFIG  += soapysdr
 }
 
@@ -333,4 +336,13 @@ limesdr {
 
     # The same lib for unix and Windows
     LIBS       += -lLimeSuite
+}
+
+hydrasdr {
+    DEFINES    += HAVE_HYDRASDR
+    HEADERS    += $$PWD/input/hydrasdr_sdr.h
+    SOURCES    += $$PWD/input/hydrasdr_sdr.cpp
+
+    # The same lib for unix and Windows
+    LIBS       += -lhydrasdr
 }

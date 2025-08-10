@@ -104,6 +104,7 @@ The following SDR devices are supported
   - [rtl_tcp](http://osmocom.org/projects/sdr/wiki/rtl-sdr#rtl_tcp)
 * [Airspy R2 and Airspy Mini ](http://airspy.com/)
   - Limitation: Airspy HF+ is not supported due to limited bandwidth
+* [HydraSDR RFOne](https://hydrasdr.com/hydrasdr-rfone)
 * [I/Q RAW file](https://www.welle.io/devices/rawfile)
 * [SoapySDR](https://github.com/pothosware/SoapySDR/): All SDR-devices that are supported by SoapySDR, gr-osmosdr and uhd. These are too many devices to list them all. To see if your SDR is supported, have a look at the lists at [SoapySDR](https://github.com/pothosware/SoapySDR/wiki) and [SoapyOsmo](https://github.com/pothosware/SoapyOsmo/wiki).
     * Devices supported by gr-osmosdr are supported via [SoapyOsmo](https://github.com/pothosware/SoapyOsmo/wiki)
@@ -126,6 +127,7 @@ The following libraries and their development files are needed.
 * libusb
 * libmpg123
 * libairspy
+* libhydrasdr
 * libmp3lame
 * libsoapysdr
 
@@ -192,7 +194,7 @@ mkdir build
 cd build
 ```
 
-2. Run CMake. To enable support for RTL-SDR add the flag `-DRTLSDR=1` (requires librtlsdr) and for SoapySDR add `-DSOAPYSDR=1` (requires SoapySDR compiled with support for each desired hardware, e.g. UHD for Ettus USRP, LimeSDR, Airspy or HackRF). By default, CMake will build both welle-io and welle-cli. Use `-DBUILD_WELLE_IO=OFF` or `-DBUILD_WELLE_CLI=OFF` to compile only the one you need.
+2. Run CMake. To enable support for RTL-SDR add the flag `-DRTLSDR=1` (requires librtlsdr) and for SoapySDR add `-DSOAPYSDR=1` (requires SoapySDR compiled with support for each desired hardware, e.g. UHD for Ettus USRP, LimeSDR, Airspy, HackRF or HydraSDR). By default, CMake will build both welle-io and welle-cli. Use `-DBUILD_WELLE_IO=OFF` or `-DBUILD_WELLE_CLI=OFF` to compile only the one you need.
 
 ```
 cmake ..

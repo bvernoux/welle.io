@@ -64,6 +64,15 @@ modules:
         url: 'https://github.com/airspy/airspyone_host.git'
         tag: v1.0.10
 
+  - name: libhydrasdr
+    buildsystem: cmake
+    config-opts:
+      - '-Wno-dev'
+    sources:
+      - type: git
+        url: 'https://github.com/hydrasdr/rfone_host.git'
+        tag: v1.0.2
+
   - name: SoapySDR
     buildsystem: cmake
     config-opts:
@@ -81,6 +90,7 @@ modules:
       - -DBUILD_WELLE_CLI=OFF
       - -DAIRSPY=ON
       - -DRTLSDR=ON
+      - -DHYDRASDR=ON
       - -DSOAPYSDR=ON
     sources:
       - type: dir

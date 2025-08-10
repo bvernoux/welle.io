@@ -22,6 +22,7 @@ option(KISS_FFT          "KISS FFT instead of FFTW"              OFF )
 option(PROFILING         "Enable profiling (see README.md)"      OFF )
 option(AIRSPY            "Compile with Airspy support"           OFF )
 option(RTLSDR            "Compile with RTL-SDR support"          OFF )
+option(HYDRASDR          "Compile with HydraSDR support"         OFF )
 option(SOAPYSDR          "Compile with SoapySDR support"         OFF )
 option(FLAC              "Compile with flac support for streaming" OFF )
 
@@ -198,6 +199,10 @@ if (AIRSPY)
     find_package(LibAIRSPY REQUIRED)
 endif()
 
+if (HYDRASDR)
+    find_package(LibHYDRASDR REQUIRED)
+endif()
+
 if (SOAPYSDR)
   find_package(SoapySDR NO_MODULE REQUIRED)
   # Note: SoapySDRConfig.cmake sets C++11 standard so it needs to be reset to C++14
@@ -309,6 +314,11 @@ if(LIBAIRSPY_FOUND)
     set(input_sources  ${input_sources} src/input/airspy_sdr.cpp)
 endif()
 
+if(LIBHYDRASDR_FOUND)
+    add_definitions (-DHAVE_HYDRASDR)
+    set(input_sources  ${input_sources} src/input/hydrasdr_sdr.cpp)
+endif()
+
 if(SoapySDR_FOUND)
     add_definitions (-DHAVE_SOAPYSDR)
     set(input_sources  ${input_sources} src/input/soapy_sdr.cpp)
@@ -415,6 +425,7 @@ if(BUILD_WELLE_IO)
     target_link_libraries (${executableName} PRIVATE
       ${LIBRTLSDR_LIBRARIES}
       ${LIBAIRSPY_LIBRARIES}
+      ${LIBHYDRASDR_LIBRARIES}
       ${FFTW3F_LIBRARIES}
       ${FAAD_LIBRARIES}
       ${SoapySDR_LIBRARIES}
@@ -476,6 +487,7 @@ if(BUILD_WELLE_CLI AND NOT ANDROID)
     target_link_libraries (${cliExecutableName}
       ${LIBRTLSDR_LIBRARIES}
       ${LIBAIRSPY_LIBRARIES}
+      ${LIBHYDRASDR_LIBRARIES}
       ${FFTW3F_LIBRARIES}
       ${FAAD_LIBRARIES}
       ${ALSA_LIBRARIES}
